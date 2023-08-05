@@ -1,0 +1,159 @@
+NOME: 
+ 
+Questão 1:
+
+# váriaveis globais para gerar a  matriz 3x7 (casos de covid em 3 bairros por 7 dias)
+bairros = 3
+dias_semana = 7
+covid = [0] * bairros
+
+# Função que analisa qual foi o maior valor na quinta posição da matriz (sexta-feira)
+def maior_numero_de_casos_sexta_feira(matriz):
+    # gerando matriz
+    for linha in range (bairros):
+        matriz[linha] = [0] * dias_semana
+
+    # Enquanto o número de bairros for menor que 3 irá para o próximo for
+    for bairro in range(3):
+        print(20 * '=-')
+        # Enquanto o número de dias for menor do que 7, acionara o input para ser adicionado um número de casos de covid na matriz
+        for dia in range(7):
+            print('Quantos casos teve no BAIRRO', bairro+1, 'no', dia+1, '° DIA da semana?')
+            # Adiciona o número de casos lido pelo teclado na matriz
+            matriz[bairro][dia] = int(input('Digite o número de casos: '))
+            # Enquanto o valor digitado for negativo, será lido novamente até ser digitado um valor positivo
+            while matriz[bairro][dia] < 0:
+                print(12 * '=-')
+                matriz[bairro][dia] = int(input('Insira um valor positivo: '))
+
+    # igualando o maior número à zero, para que possa ser substituido
+    maior = 0
+    # Ira passar pelas 3 linhas
+    for cont in range(3):
+        # Se o novo valor for maior que o antigo, sera o novo valor da variável maior
+        if maior < matriz[cont][5]:
+            maior = matriz[cont][5]
+    
+    print(20 * '=-')
+    # Se o maior for igual a outro maior, irá retornar 'Igual"
+    if maior == matriz[0][5] and maior == matriz[1][5] or maior == matriz[0][5] and maior == matriz[2][5] or maior == matriz[1][5] and maior == matriz[2][5]:
+        return('Iguais')
+
+    # Se o maior número for a quinta coluna da primeira linha, retornara 'Bairro 1'
+    elif maior == matriz[0][5]:
+        return 'Bairro 1 foi o que teve mais casos na sexta-feira'
+    # Se o maior número for a quinta coluna da segunda linha, retornara 'Bairro 2'
+    elif maior == matriz[1][5]:
+        return 'Bairro 2 foi o que teve mais casos na sexta-feira'
+    # Senão retornara 'Bairro 3'
+    else:
+        return 'Bairro 3 foi o que teve mais casos na sexta-feira'
+
+# Printa a função, colocando a matriz covid como parâmetro
+print(maior_numero_de_casos_sexta_feira(covid))
+
+
+Questão 2:
+
+# Váriavel da lista do salário durante um ano
+salario_mensal = []
+# Váriavel da lista dos salários menores que mil reais
+menores_que_mil = []
+
+# Função que analisa quais valores são menores que mil reais
+def valores_menores_que_mil():
+    # Lê do teclado o salario mensal durante um ano (12 meses)
+    for meses in range(12):
+        print(20 * '=-')
+        print('Qual foi seu salário no', meses+1, '° mês do ano?')
+        salario = float(input('Digite seu salário: '))
+        # Enquanto o valor digitador for negativo, será lido do teclado um novo valor até que o mesmo seja positivo
+        while salario < 0:
+            salario = float(input('Digite um valor positivo: '))
+        salario_mensal.append(salario)
+
+    print(20 * '=-')
+    print('Valores abaixo de R$1000,00')
+    # Percorre a lista de salario mensal inteira e identifica os valores menores que mil reais
+    for cont in range(len(salario_mensal)):
+        # Se o valor lido for menor que mil reais, será adicionado a outra lista
+        if salario_mensal[cont] < 1000:
+            menores_que_mil.append(salario_mensal[cont])
+    # Retorna a lista dos valores menores que mil reais
+    return menores_que_mil
+
+print(valores_menores_que_mil())
+
+
+Questão 3:
+
+# Função que analisa se o número de alunos na classe é PAR ou IMPAR
+def numero_par_ou_impar_de_alunos():
+    # Lê do teclado quantos alunos há na turma
+    valor = int(input('Quantos alunos há na turma? '))
+
+    # Se o valor for positivo, realizara a conta de resto de divisão inteira
+    if valor >= 0:
+        print(20 * '=-')
+        x = valor % 2
+        
+        # Se o resto for igual a 0, retornara 'True' ao usuário
+        if x == 0:
+            return True
+        # Senão retornara 'False' ao usuário
+        else:
+            return False
+    
+    # Senão retornara 'Valor negativo' ao usuário
+    else:
+        print(20 * '=-')
+        return('Valor negativo') 
+
+# Imprime o retorno da função
+print(numero_par_ou_impar_de_alunos())
+
+Questão 4:
+
+# Variável global da lista de numero de telefone
+numero_telefone = []
+
+# Função que verifica se o DDD é = 41
+def verificar_ddd(lista):
+    # Enquanto o contador for menor que dez (número de digitos do número de telefone), ira ler um digito ao usuários
+    for cont in range(10):
+        print(20 * '=-')
+        # Se o contador for menor que dois, ira perguntar o ddd do usuários, que no caso são os primeiros dois números
+        if cont < 2:
+            print(cont+1, '° digito do seu DDD')
+            numero = int(input('Insira um DDD (um digito de cada vez, de 0 à 9): '))
+            # Enquanto o valor for acima de dois digitos ou o valor for negativo, ira ler novamente outro valor
+            while numero > 10 or numero < 0:
+                numero = int(input('Insira um dígito de 0 a 9: '))
+        # Senão, (contador > 2) ira ler os digitos do número do usuário
+        else:
+            print(cont-1, '° digito do seu número')
+            numero = int(input('Insira seu número (um dígito de cada vez, de 0 à 9): '))
+            # Enquanto o valor for acima de dois digitos ou o valor for negativo, ira ler novamente outro valor
+            while numero > 10 or numero < 0:
+                numero = int(input('Insira um dígito de 0 a 9: '))
+        #Após passar por todas as verificações, adicionara os digitos a lista
+        lista.append(numero)
+    
+    # Separadores de números e DDD
+    lista.insert(2, '-')
+    lista.insert(7, '-')
+
+    print(20 * '=-')
+    # Imprime a lista com todos os digitos lidos do usuário
+    print(lista)
+
+    print(20 * '=-')
+    # Se o primeiro digito for 4 e o segundo for 1 (41) retorna 'True' para o usuário
+    if lista[0] == 4 and lista[1] == 1:
+        return True
+    # Senão retornara 'False' para o usuário
+    else:
+        return False
+
+# Imprime a função passado a lista de numero de telefone como parâmetro
+print(verificar_ddd(numero_telefone))
